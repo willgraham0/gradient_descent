@@ -14,7 +14,7 @@ class AbstractFunction(ABC):
 
     @abstractmethod
     def f(self, x: np.array) -> np.array:
-        """Define the function and return the output data from it."""
+        """Return f(x)."""
         pass
 
     @abstractmethod
@@ -46,4 +46,3 @@ class Normal(AbstractFunction):
     def first_partial_derivatives(self) -> List[Callable]:
         """Return the methods for each partial derivative."""
         return [self.dfdmu, self.dfdsig]
-
