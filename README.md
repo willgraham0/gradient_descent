@@ -1,1 +1,4 @@
-# gradient_descent
+# Gradient Descent
+
+## Introduction
+
