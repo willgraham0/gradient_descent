@@ -19,7 +19,7 @@ class AbstractFunction(ABC):
 
     @abstractmethod
     def first_partial_derivatives(self) -> List[Callable]:
-        """Return the first partial derivatives of the function."""
+        """Return the methods for each first partial derivatives of the function."""
         pass
 
 
