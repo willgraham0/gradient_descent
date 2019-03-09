@@ -18,8 +18,31 @@ class AbstractFunction(ABC):
         pass
 
     @abstractmethod
-    def first_partial_derivatives(self) -> List[Callable]:
-        """Return the methods for each first partial derivative of the function."""
+    def get_partial_derivatives(self) -> List[Callable]:
+        """Return the methods for each first partial derivative of the function.
+
+        The order of the list should be the same as the order of the list of
+        variables that the derivatives correspond to.
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def variables(self) -> np.array:
+        """Return the variables of the function.
+
+        The order of the list should be the same as the order of the list of
+        first partial derivatives of the variables.
+        """
+        pass
+
+    @abstractmethod
+    def set_variables(self, new_variables: np.array):
+        """Set the variables of the function.
+
+        The order of the array should be the same as the order of variables
+        specified on initialisation of the class instance.
+        """
         pass
 
 
@@ -37,12 +60,21 @@ class Normal(AbstractFunction):
 
     def dfdmu(self, x: np.array) -> np.array:
         """Return d/dmu of f(x; mu, sig)."""
-        return ((x - self.mu)/self.sig**2) * self.f(x)
+        return ((x - self.mu)/self.sig**2)*self.f(x)
 
     def dfdsig(self, x: np.array) -> np.array:
         """Return d/dsig of f(x; mu, sig)."""
-        return (((x - self.mu)**2)/self.sig**2 - 1/self.sig) * self.f(x)
+        return (((x - self.mu)**2)/self.sig**2 - 1/self.sig)*self.f(x)
 
-    def first_partial_derivatives(self) -> List[Callable]:
+    def get_partial_derivatives(self) -> List[Callable]:
         """Return the methods for each partial derivative."""
         return [self.dfdmu, self.dfdsig]
+
+    @property
+    def variables(self) -> np.array:
+        """Return the current values of the variables of the function."""
+        return np.array([self.mu, self.sig])
+
+    def set_variables(self, new_variables: np.array):
+        """Set the values of the variables of the function."""
+        self.mu, self.sig = new_variables
