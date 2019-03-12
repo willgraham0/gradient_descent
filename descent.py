@@ -17,30 +17,19 @@ class GradientDescent:
         self.y = y
         self.iterations = iterations
         self.learning_rate = learning_rate
+        self.results = []
 
     def run(self):
-        """Perform the gradient descent and print progress to console."""
-        step_name = 'Step'
-        digits = len(str(self.iterations))
-        buffer = len(step_name) if len(step_name) > digits else digits
-        cost_name, cost_precision = 'Cost', 5
-        variables_name, variables_precision = 'Variables', 2
-
-        print(
-            f'{step_name:{buffer}} | '
-            f'{cost_name:{cost_precision + 6}} | '
-            f'{variables_name}'
-        )
-
+        """Perform the gradient descent."""
+        # TODO: Turn this into a generator
         for i in range(self.iterations):
-            variables = ' '.join(
-                [f'{name}={value:.{variables_precision}f}' for name, value in vars(self.function).items()]
-            )
-            print(f'{i:<{buffer}} | {self.cost:.{cost_precision}E} | {variables}')
+            self.results.append({'step': i, 'cost': self.cost, 'variables': dict(vars(self.function))})
 
             # Increment function variables in the direction of largest cost reduction
             new_variables = self.function.get_variables - self.jacobian * self.learning_rate
             self.function.set_variables(new_variables)
+
+        self.results.append({'step': self.iterations, 'cost': self.cost, 'variables': dict(vars(self.function))})
 
     @property
     def cost(self) -> float:
@@ -55,3 +44,27 @@ class GradientDescent:
             -2 * (self.y - self.function.f(self.x)).dot(partial_derivative(self.x))
             for partial_derivative in self.function.get_partial_derivatives()
         ])
+
+    def print_results(self):
+        """Print the results."""
+        step_name = 'Step'
+        digits = len(str(self.iterations))
+        buffer = len(step_name) if len(step_name) > digits else digits
+        cost_name, cost_precision = 'Cost', 5
+        variables_name, variables_precision = 'Variables', 2
+
+        print(
+            f'{step_name:{buffer}} | '
+            f'{cost_name:{cost_precision + 6}} | '
+            f'{variables_name}'
+        )
+
+        for row in self.results:
+            variables = ' '.join(
+                [
+                    f'{name}={value:.{variables_precision}f}'
+                    for name, value in row['variables'].items()
+                ]
+            )
+            print(f"{row['step']:<{buffer}} | {row['cost']:.{cost_precision}E} | {variables}")
+
