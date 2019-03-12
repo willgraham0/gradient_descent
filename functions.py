@@ -28,7 +28,7 @@ class AbstractFunction(ABC):
 
     @property
     @abstractmethod
-    def variables(self) -> np.array:
+    def get_variables(self) -> np.array:
         """Return the variables of the function.
 
         The order of the list should be the same as the order of the list of
@@ -71,7 +71,7 @@ class Normal(AbstractFunction):
         return [self.dfdmu, self.dfdsig]
 
     @property
-    def variables(self) -> np.array:
+    def get_variables(self) -> np.array:
         """Return the current values of the variables of the function."""
         return np.array([self.mu, self.sig])
 
