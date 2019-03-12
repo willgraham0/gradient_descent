@@ -19,10 +19,27 @@ class GradientDescent:
         self.learning_rate = learning_rate
 
     def run(self):
-        """Perform the gradient descent."""
+        """Perform the gradient descent and print progress to console."""
+        step_name = 'Step'
+        digits = len(str(self.iterations))
+        buffer = len(step_name) if len(step_name) > digits else digits
+        cost_name, cost_precision = 'Cost', 5
+        variables_name, variables_precision = 'Variables', 2
+
+        print(
+            f'{step_name:{buffer}} | '
+            f'{cost_name:{cost_precision + 6}} | '
+            f'{variables_name}'
+        )
+
         for i in range(self.iterations):
-            print(f'Step={i:{len(str(self.iterations))}} Cost={self.cost:.5E} Variables={vars(self.function)}')
-            new_variables = self.function.variables - self.jacobian * self.learning_rate
+            variables = ' '.join(
+                [f'{name}={value:.{variables_precision}f}' for name, value in vars(self.function).items()]
+            )
+            print(f'{i:<{buffer}} | {self.cost:.{cost_precision}E} | {variables}')
+
+            # Increment function variables in the direction of largest cost reduction
+            new_variables = self.function.get_variables - self.jacobian * self.learning_rate
             self.function.set_variables(new_variables)
 
     @property
