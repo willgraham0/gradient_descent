@@ -67,4 +67,3 @@ class GradientDescent:
                 ]
             )
             print(f"{row['step']:<{buffer}} | {row['cost']:.{cost_precision}E} | {variables}")
-
