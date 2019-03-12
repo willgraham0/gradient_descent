@@ -11,6 +11,7 @@ def main():
 
     mu_guess, sig_guess = 0.1, 3.8
     model = Normal(mu_guess, sig_guess)
-    descent = GradientDescent(model, x, y, iterations=11, learning_rate=50)
+    descent = GradientDescent(model, x, y, iterations=10, learning_rate=50)
 
     descent.run()
+    descent.print_results()
