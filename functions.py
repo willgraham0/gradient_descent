@@ -50,7 +50,7 @@ class Normal(AbstractFunction):
     """A Normal, or Gaussian, distribution."""
 
     def __init__(self, mu, sig):
-        """Set the initial values of mu and sig for the distribution."""
+        """Set the values of mu and sig for the distribution."""
         self.mu = mu
         self.sig = sig
 
