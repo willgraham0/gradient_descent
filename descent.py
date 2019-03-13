@@ -21,7 +21,6 @@ class GradientDescent:
 
     def run(self):
         """Perform the gradient descent."""
-        # TODO: Turn this into a generator
         for i in range(self.iterations):
             self.results.append({'step': i, 'cost': self.cost, 'variables': dict(vars(self.function))})
 
@@ -45,13 +44,11 @@ class GradientDescent:
             for partial_derivative in self.function.get_partial_derivatives()
         ])
 
-    def print_results(self):
-        """Print the results."""
-        step_name = 'Step'
+    def print_results(self, cost_precision=5, variables_precision=2):
+        """Print the results of the gradient descent."""
+        step_name, cost_name, variables_name = 'Step', 'Cost', 'Variables'
         digits = len(str(self.iterations))
         buffer = len(step_name) if len(step_name) > digits else digits
-        cost_name, cost_precision = 'Cost', 5
-        variables_name, variables_precision = 'Variables', 2
 
         print(
             f'{step_name:{buffer}} | '
@@ -60,10 +57,8 @@ class GradientDescent:
         )
 
         for row in self.results:
-            variables = ' '.join(
-                [
-                    f'{name}={value:.{variables_precision}f}'
-                    for name, value in row['variables'].items()
-                ]
-            )
+            variables = ' '.join([
+                f'{name}={value:.{variables_precision}f}'
+                for name, value in row['variables'].items()
+            ])
             print(f"{row['step']:<{buffer}} | {row['cost']:.{cost_precision}E} | {variables}")
