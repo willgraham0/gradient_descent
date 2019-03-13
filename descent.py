@@ -21,14 +21,12 @@ class GradientDescent:
 
     def run(self):
         """Perform the gradient descent."""
-        for i in range(self.iterations):
+        for i in range(self.iterations + 1):
             self.results.append({'step': i, 'cost': self.cost, 'variables': dict(vars(self.function))})
 
             # Increment function variables in the direction of largest cost reduction
             new_variables = self.function.get_variables - self.jacobian * self.learning_rate
             self.function.set_variables(new_variables)
-
-        self.results.append({'step': self.iterations, 'cost': self.cost, 'variables': dict(vars(self.function))})
 
     @property
     def cost(self) -> float:
