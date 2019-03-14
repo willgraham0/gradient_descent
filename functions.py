@@ -50,7 +50,7 @@ class Normal(AbstractFunction):
     """A Normal, or Gaussian, distribution."""
 
     def __init__(self, mu, sig):
-        """Set the values of mu and sig for the distribution."""
+        """Set the values of mean (mu) and standard deviation (sig) for the distribution."""
         self.mu = mu
         self.sig = sig
 
@@ -78,3 +78,39 @@ class Normal(AbstractFunction):
     def set_variables(self, new_variables: np.array):
         """Set the values of the variables of the function."""
         self.mu, self.sig = new_variables
+
+
+class Linear(AbstractFunction):
+    """A Linear distribution"""
+
+    def __init__(self, m, c):
+        """Set the values of gradient (m) and intercept (c) for the line."""
+        self.m = m
+        self.c = c
+
+    def f(self, x: np.array) -> np.array:
+        """Return f(x; m, c)."""
+        return self.m * x + self.c
+
+    @staticmethod
+    def dfdm(x: np.array) -> np.array:
+        """Return d/dm of f(x; m, c)."""
+        return x
+
+    @staticmethod
+    def dfdc(x: np.array) -> np.array:
+        """Return d/dc of f(x; m, c)."""
+        return np.ones(len(x))
+
+    def get_partial_derivatives(self) -> List[Callable]:
+        """Return the methods for each partial derivative."""
+        return [self.dfdm, self.dfdc]
+
+    @property
+    def get_variables(self) -> np.array:
+        """Return the current values of the variables of the function."""
+        return np.array([self.m, self.c])
+
+    def set_variables(self, new_variables: np.array):
+        """Set the values of the variables of the function."""
+        self.m, self.c = new_variables
