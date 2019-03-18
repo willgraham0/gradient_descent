@@ -1,7 +1,7 @@
 import numpy as np
 
 from descent import GradientDescent
-from functions import Normal
+from functions import Normal, Linear
 
 
 def main():
@@ -15,3 +15,16 @@ def main():
 
     descent.run()
     descent.print_results()
+    import pdb; pdb.set_trace()
+
+    # m, c = 5.0, 3.0
+    # x = np.linspace(-5.0, 5.0, 10)
+    # y = Linear(m, c).f(x)
+    #
+    # m_guess, c_guess = 0.1, 3.8
+    # model = Linear(m_guess, c_guess)
+    # descent = GradientDescent(model, x, y, iterations=50, learning_rate=0.001)
+    #
+    # descent.run()
+    # descent.print_results()
+

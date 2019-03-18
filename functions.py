@@ -3,6 +3,7 @@
 """
 
 from abc import ABC, abstractmethod
+from collections import OrderedDict
 from typing import Callable, List
 
 
@@ -23,6 +24,15 @@ class AbstractFunction(ABC):
 
         The order of the list should be the same as the order of the list of
         variables that the derivatives correspond to.
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def variables(self) -> OrderedDict:
+        """Return the variable names of the function and their current values.
+
+        The order should be the same as the order of the list of first partial derivatives of the variables.
         """
         pass
 
@@ -71,6 +81,11 @@ class Normal(AbstractFunction):
         return [self.dfdmu, self.dfdsig]
 
     @property
+    def variables(self) -> OrderedDict:
+        """Return the variable names and values."""
+        return OrderedDict({'mu': self.mu, 'sig': self.sig})
+
+    @property
     def get_variables(self) -> np.array:
         """Return the current values of the variables of the function."""
         return np.array([self.mu, self.sig])
@@ -105,6 +120,11 @@ class Linear(AbstractFunction):
     def get_partial_derivatives(self) -> List[Callable]:
         """Return the methods for each partial derivative."""
         return [self.dfdm, self.dfdc]
+
+    @property
+    def variables(self) -> OrderedDict:
+        """Return the variable names and values."""
+        return OrderedDict({'m': self.m, 'c': self.c})
 
     @property
     def get_variables(self) -> np.array:
