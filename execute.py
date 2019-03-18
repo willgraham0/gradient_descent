@@ -15,7 +15,7 @@ def main():
 
     descent.run()
     descent.print_results()
-    descent.plot_cost_contours()
+    descent.plot_cost_contours(vectors=False)
 
 
     # m, c = 5.0, 3.0
