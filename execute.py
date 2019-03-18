@@ -15,7 +15,8 @@ def main():
 
     descent.run()
     descent.print_results()
-    import pdb; pdb.set_trace()
+    descent.plot_cost_contours()
+
 
     # m, c = 5.0, 3.0
     # x = np.linspace(-5.0, 5.0, 10)
