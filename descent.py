@@ -83,11 +83,11 @@ class GradientDescent:
 
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
-        cs = ax.contour(var1, var2, costs, levels=np.linspace(0, 0.01, 10))
+        cs = ax.contour(var1, var2, costs)
         var1_label, var2_label = variable_ranges.keys()
         plt.xlabel(var1_label)
         plt.ylabel(var2_label)
-        plt.clabel(cs, inline=1, fontsize=10)
+        plt.clabel(cs)
         plt.title(f'Contours of cost with {var1_label} and {var2_label}')
         plt.show()
 
