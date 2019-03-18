@@ -2,9 +2,12 @@
 
 from collections import OrderedDict
 from itertools import product
+from typing import List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
+
+from utils import diff
 
 
 class GradientDescent:
@@ -67,9 +70,6 @@ class GradientDescent:
         if not self.results:
             raise ValueError('The gradient descent must be executed first.')
 
-        if vectors:
-            raise NotImplementedError()
-
         variable_ranges = self._get_variable_ranges(steps=steps)
 
         costs = np.array([
@@ -84,6 +84,8 @@ class GradientDescent:
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
         cs = ax.contour(var1, var2, costs)
+        if vectors:
+            ax.quiver(*self._get_vector_data(), angles='xy')
         var1_label, var2_label = variable_ranges.keys()
         plt.xlabel(var1_label)
         plt.ylabel(var2_label)
@@ -116,3 +118,11 @@ class GradientDescent:
         return OrderedDict(
             {name: np.linspace(min(values), max(values), steps) for name, values in self._get_variable_values().items()}
         )
+
+    def _get_vector_data(self) -> Tuple[List, List, List, List]:
+
+        var1_values, var2_values = self._get_variable_values().values()
+        var1_diffs = diff(var1_values)
+        var2_diffs = diff(var2_values)
+
+        return var1_values[:-1], var2_values[:-1], var1_diffs, var2_diffs
