@@ -59,7 +59,7 @@ class GradientDescent:
             ])
             print(f"{row['step']:<{buffer}} | {row['cost']:.{cost_precision}E} | {variables}")
 
-    def plot_cost_contours(self, steps: int = 100, vectors=True):
+    def plot_cost_contours(self, steps: int = 100, vectors: bool = True):
         """Plot a 2-dimensional contour plot of cost versus the two function variables.
 
         The contours will be in the region of the minimum and maximum values of the function variables
