@@ -120,7 +120,11 @@ class GradientDescent:
         )
 
     def _get_vector_data(self) -> Tuple[List, List, List, List]:
+        """Return lists of variable values and lists of element-by-element differences.
 
+        E.g.
+        ([x1, x2, ..., xn-1], [y1, y2, ..., yn-1], [x2-x1, x3-x2, ..., xn - xn-1], [y2-y1, y3-y2, ..., yn - yn-1])
+        """
         var1_values, var2_values = self._get_variable_values().values()
         var1_diffs = diff(var1_values)
         var2_diffs = diff(var2_values)
