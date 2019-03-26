@@ -6,15 +6,17 @@ Gradient descent is the process of iteratively modifying
 the variables of a function in a way that causes the error
 between the output of the function and an existing answer to
 be minimised for a particular input - we are travelling down
-the 'error surface' by the steepest slope.  
+the 'error surface' by the steepest slope from where we started.  
 
 ## Functions
 
 We will consider two functions to illustrate the idea: the
-Normal distribution and a Linear function (or simply a line).
+Normal distribution and a Linear function (or simply, a line).
 Both of these functions have two variables that can be
 manipulated in order to attempt to 'fit' the output of the 
-function onto some existing data. 
+functions onto some existing data.
+
+Our input data will be a vector 
 
 ### Normal Distribution
 
@@ -22,7 +24,7 @@ function onto some existing data.
 import numpy as np
 
 from descent import GradientDescent
-from functions import Normal, Linear
+from functions import Normal
 
 mu, sig = 1.0, 3.0
 x = np.linspace(-5.0, 5.0, 10)
@@ -85,6 +87,8 @@ descent.plot_cost_contours()
 ### Linear Function
 
 ```python
+from functions import Linear
+
 m, c = 5.0, 3.0
 x = np.linspace(-5.0, 5.0, 10)
 y = Linear(m, c).f(x)
