@@ -40,7 +40,7 @@ descent.plot_cost_contours()
 
 ![cost_contours_mu_sig_i10_r50]
 
-#### Reduce Learning Rate
+#### Reduced Learning Rate
 
 ```python
 descent = GradientDescent(model, x, y, iterations=10, learning_rate=5)
@@ -54,7 +54,7 @@ descent.plot_cost_contours()
 
 ![cost_contours_mu_sig_i10_r5]
 
-#### Increase Learning Rate
+#### Increased Learning Rate
 
 ```python
 descent = GradientDescent(model, x, y, iterations=10, learning_rate=120)
@@ -68,7 +68,7 @@ descent.plot_cost_contours()
 
 ![cost_contours_mu_sig_i10_r120]
 
-#### Increase Number of Iterations
+#### Increased Number of Iterations
 
 ```python
 descent = GradientDescent(model, x, y, iterations=100, learning_rate=5)
