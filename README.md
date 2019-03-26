@@ -5,7 +5,7 @@
 Gradient descent is the process of iteratively modifying
 the variables of a function in a way that causes the error
 between the output of the function and an existing answer to
-be minimised for a particular input - we are travelling down
+be minimised for a particular input. We are travelling down
 the 'error surface' by the steepest slope from where we started.  
 
 ## Functions
@@ -14,9 +14,22 @@ We will consider two functions to illustrate the idea: the
 Normal distribution and a Linear function (or simply, a line).
 Both of these functions have two variables that can be
 manipulated in order to attempt to 'fit' the output of the 
-functions onto some existing data.
+functions onto some existing data. These variables are _sig_
+(standard deviation) and _mu_ (average) for the Normal distribution
+and _m_ (gradient) and _c_ (y-intercept) for a line.  
 
-Our input data will be a vector 
+Our input data will be a vector of length 10 starting at -5
+and ending at 5. 
+
+We will create existing answers (or truths) using the functions,
+the input data and values of _sig_ and _mu_ or _m_ and _c_. It is these
+values of the variables that we expect our gradient descent algorithm
+to converge towards from some initial values of _sig_ and _mu_ or 
+_m_ and _c_.
+
+The number of iterations and the learning rate are two further parameters
+that will affect the success of the gradient descent and their effects will
+be discussed. 
 
 ### Normal Distribution
 
