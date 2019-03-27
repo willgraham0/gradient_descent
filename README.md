@@ -14,24 +14,27 @@ We will consider two functions to illustrate the idea: the
 Normal distribution and a Linear function (or simply, a line).
 Both of these functions have two variables that can be
 manipulated in order to attempt to 'fit' the output of the 
-functions onto some existing data. These variables are _sig_
-(standard deviation) and _mu_ (average) for the Normal distribution
+functions onto some existing data. These variables are _mu_ 
+(average) and _sig_ (standard deviation) for the Normal distribution
 and _m_ (gradient) and _c_ (y-intercept) for a line.  
 
-Our input data will be a vector of length 10 starting at -5
-and ending at 5. 
+Our input data for both functions will be a vector of length 10 starting
+at -5 and ending at 5. 
 
 We will create existing answers (or truths) using the functions,
-the input data and values of _sig_ and _mu_ or _m_ and _c_. It is these
+the input data and values of _mu_ and _sig_ or _m_ and _c_. It is these
 values of the variables that we expect our gradient descent algorithm
-to converge towards from some initial values of _sig_ and _mu_ or 
-_m_ and _c_.
+to converge towards from some initial values of _mu_ and _sig_ or 
+_m_ and _c_ that we will specify.
 
 The number of iterations and the learning rate are two further parameters
 that will affect the success of the gradient descent and their effects will
 be discussed. 
 
 ### Normal Distribution
+
+First, we will create the 'truth' with values of _mu_ and _sig_ of 1.0 and 3.0,
+respectively, and hold this vector in the variable _y_.
 
 ```python
 import numpy as np
@@ -42,6 +45,12 @@ from functions import Normal
 mu, sig = 1.0, 3.0
 x = np.linspace(-5.0, 5.0, 10)
 y = Normal(mu, sig).f(x)
+```
+
+We make a first guess of _mu_ and _sig_ and run the gradient descent for
+10 iterations and a learning rate of 50.
+
+```python
 mu_guess, sig_guess = 0.1, 3.8
 model = Normal(mu_guess, sig_guess)
 descent = GradientDescent(model, x, y, iterations=10, learning_rate=50)
@@ -51,7 +60,22 @@ descent.print_results()
 descent.plot_cost_contours()
 ```
 
+The results are printed below and a contour graph of constant cost (or error) is
+plotted with respect to the values of _mu_ and _sig_. It can be seen that after each
+iteration the cost is reducing and the values of _mu_ and _sig_ are moving towards
+the true values of 1.0 and 3.0, respectively.
+
+What the algorithm is doing is working out the _Jacobian_ of cost. This is a vector
+of the partial derivatives of the cost function with respect to the variables
+_mu_ and _sig_ - a vector that points in the direction of maximum gradient (or change
+in cost). To minimise the cost, we want to the modify the values of _mu_ and _sig_
+in a way that moves us in the direction on the _Jacobian_ and by an amount specified
+by the learning rate.
+
 ![results_mu_sig_i10_r50]
+
+The tail of the arrows indicates the current value of _mu_ and _sig_ and the
+direction of the arrow indicates how the next values will be modified.
 
 ![cost_contours_mu_sig_i10_r50]
 
