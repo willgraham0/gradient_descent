@@ -204,6 +204,10 @@ However, this combination is still inferior to the first combination of 10 itera
 
 ### Linear Function
 
+Now consider a linear function. We create a 'truth' using values of _m_ and _c_ of 5.0 and 3.0, respectively, and assign it to the variable _y_. Then we set initial guess values for the gradient and intercept of 0.1 and 3.8, respectively.
+
+We then run the gradient descent for 1000 steps and a learning rate of 0.0001.
+
 ```python
 from functions import Linear
 
@@ -239,11 +243,15 @@ And:
 
 ![cost_contours_m_c_i1000_r0.0001]
 
-In the plot above it appears that the path of the descent is cutting across the contours at an angle instead of perpendicular to them. The following plot, which has been adjusted to show contours of cost close to zero, reveals that the descent is indeed perpendicular to the contours.
+The plot above shows the procession down the cost slope for this function and the changing values of _m_ and _c_ that result. The step size is very small and therefore the arrows form a smooth continuous line.
+
+This time it appears that the path of the descent is cutting across the contours at an angle instead of perpendicular to them. The following plot, which has been adjusted to show contours of cost close to zero, reveals that the descent is indeed perpendicular to the contours.
 
 ![cost_contours_m_c_i1000_r0.0001_refined]
 
-#### Reduced Learning Rate and Number of Iterations
+#### Increased Learning Rate and Reduced Number of Iterations
+
+Increasing the learning rate and reducing the number of iterations introduces some interesting behaviour for the linear function.
 
 ```python
 # Reset the model
@@ -274,13 +282,19 @@ And:
 
 ![cost_contours_m_c_i50_r0.01]
 
+We encounter a similar effect to that for the Normal distribution when the step size was increased by too much, except now, for the linear function, the effect is amplified. The rate at which the cost changes is much more severe at the line _m_ = 5 than at any point in the cost contour plot for the Normal distribution. This means that one we have converged somewhat to the correct value of _c_ any further steps lead to an ever increasing divergance away from the true value of _m_. For this learning rate, increasing the number of iterations will lead to an ever poorer solution for _m_ and _c_.
+
 ## Conclusion
+
+Gradient descent is the process of calculating the Jacobian vector - the vector of partial derivatives of a cost function with respect to each parameter of interest - and changing the values of the parameters in the direction of this vector until the cost is minimised.
+
+The process of gradient descent is sensitive to two parameters; the number of iterations and the learning rate. The number of iterations is similar to the number of steps taken down the cost slope and the learning rate is the size of each step. The combination of these two parameters will affect the performance of the process. Too large a learning rate or too small the number of iterations and you may miss or overshoot the minimum of the slope. Too small a learning rate or too large the number of iterations and you may add exessive computational cost.
+
 
 [cost_contours_mu_sig_i10_r5]: images/cost_contours_mu_sig_i10_r5.png "cost_contours_mu_sig_i10_r5"
 [cost_contours_mu_sig_i10_r50]: images/cost_contours_mu_sig_i10_r50.png "cost_contours_mu_sig_i10_r50"
 [cost_contours_mu_sig_i10_r120]: images/cost_contours_mu_sig_i10_r120.png "cost_contours_mu_sig_i10_r120"
 [cost_contours_mu_sig_i100_r5]: images/cost_contours_mu_sig_i100_r5.png "cost_contours_mu_sig_i100_r5"
 [cost_contours_m_c_i50_r0.01]: images/cost_contours_m_c_i50_r0.01.png "cost_contours_m_c_i50_r0.01"
-[cost_contours_m_c_i1000_r0.0001_refined]:
-images/cost_contours_m_c_i1000_r0.0001_refined.png "cost_contours_m_c_i1000_r0.0001_refined"
+[cost_contours_m_c_i1000_r0.0001_refined]:images/cost_contours_m_c_i1000_r0.0001_refined.png "cost_contours_m_c_i1000_r0.0001_refined"
 [cost_contours_m_c_i1000_r0.0001]:images/cost_contours_m_c_i1000_r0.0001.png "cost_contours_m_c_i1000_r0.0001"
