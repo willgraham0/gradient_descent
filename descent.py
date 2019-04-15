@@ -46,6 +46,8 @@ class GradientDescent:
 
     def print_results(self, cost_precision: int = 5, variables_precision: int = 2):
         """Print the results of the gradient descent."""
+        self._raise_if_descent_not_yet_executed()
+
         step_name, cost_name, variables_name = 'Step', 'Cost', 'Variables'
         digits = len(str(self.iterations))
         buffer = len(step_name) if len(step_name) > digits else digits
@@ -67,8 +69,8 @@ class GradientDescent:
         """
         if len(self.function.get_variables) > 2:
             raise NotImplementedError("Cannot plot 2-dimensional plot with more than 2 variables.")
-        if not self.results:
-            raise ValueError('The gradient descent must be executed first.')
+
+        self._raise_if_descent_not_yet_executed()
 
         variable_ranges = self._get_variable_ranges(steps=steps)
 
@@ -130,3 +132,8 @@ class GradientDescent:
         var2_diffs = diff(var2_values)
 
         return var1_values[:-1], var2_values[:-1], var1_diffs, var2_diffs
+
+    def _raise_if_descent_not_yet_executed(self):
+        """Raise ValueError if the gradient descent has not been executed."""
+        if not self.results:
+            raise ValueError('The gradient descent must be executed first.')
