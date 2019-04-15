@@ -55,6 +55,10 @@ class AbstractFunction(ABC):
         """
         pass
 
+    @abstractmethod
+    def __repr__(self):
+        pass
+
 
 class Normal(AbstractFunction):
     """A Normal, or Gaussian, distribution."""
@@ -93,6 +97,9 @@ class Normal(AbstractFunction):
     def set_variables(self, new_variables: np.array):
         """Set the values of the variables of the function."""
         self.mu, self.sig = new_variables
+
+    def __repr__(self):
+        return f"<A Normal Distribution with mean={self.mu} and standard deviation={self.sig}>"
 
 
 class Linear(AbstractFunction):
@@ -134,3 +141,6 @@ class Linear(AbstractFunction):
     def set_variables(self, new_variables: np.array):
         """Set the values of the variables of the function."""
         self.m, self.c = new_variables
+
+    def __repr__(self):
+        return f"<A Linear function with gradient={self.m} and intercept={self.c}>"
