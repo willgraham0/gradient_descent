@@ -58,7 +58,9 @@ descent = GradientDescent(model, x, y, iterations=10, learning_rate=50)
 descent.run()
 descent.print_results()
 ```
+
 Outputs:
+
 ```
 Step | Cost        | Variables
 0    | 4.98546E-03 | mu=0.10 sig=3.80
@@ -73,6 +75,7 @@ Step | Cost        | Variables
 9    | 6.85950E-07 | mu=0.99 sig=2.99
 10   | 2.52029E-07 | mu=0.99 sig=3.00
 ```
+
 And:
 
 ```python
@@ -112,6 +115,7 @@ descent.plot_cost_contours()
 ```
 
 Gives:
+
 ```
 Step | Cost        | Variables
 0    | 4.98546E-03 | mu=0.10 sig=3.80
@@ -128,6 +132,7 @@ Step | Cost        | Variables
 ```
 
 And:
+
 ![cost_contours_mu_sig_i10_r5]
 
 #### Increased Learning Rate
@@ -141,6 +146,7 @@ descent.run()
 descent.print_results()
 descent.plot_cost_contours()
 ```
+
 Gives:
 
 ```
@@ -157,7 +163,9 @@ Step | Cost        | Variables
 9    | 7.22040E-05 | mu=0.99 sig=3.11
 10   | 4.97031E-05 | mu=1.01 sig=2.91
 ```
+
 And:
+
 ![cost_contours_mu_sig_i10_r120]
 
 #### Increased Number of Iterations
@@ -171,7 +179,9 @@ descent.run()
 descent.print_results()
 descent.plot_cost_contours()
 ```
+
 Gives:
+
 ```
 Step | Cost        | Variables
 0    | 4.98546E-03 | mu=0.10 sig=3.80
@@ -184,6 +194,7 @@ Step | Cost        | Variables
 99   | 1.41436E-06 | mu=0.98 sig=2.99
 100  | 1.30663E-06 | mu=0.98 sig=2.99
 ```
+
 And:
 
 ![cost_contours_mu_sig_i100_r5]
@@ -205,6 +216,7 @@ descent.run()
 descent.print_results()
 descent.plot_cost_contours()
 ```
+
 Gives:
 
 ```
@@ -239,6 +251,7 @@ descent.run()
 descent.print_results()
 descent.plot_cost_contours()
 ```
+
 Gives:
 
 ```
