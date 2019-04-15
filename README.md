@@ -3,18 +3,17 @@
 ## Introduction
 
 Gradient descent is the process of iteratively modifying
-the parameters of a function in a way that causes the error
-between the output of the function and an existing answer to
+the parameters of a function in a way that causes the error between the output of the function and an existing answer to
 be minimised for a particular input. We travel down
 the 'error surface' by the steepest slope from where we started.
 
 ## Functions
 
 We will consider two functions to illustrate the idea: the
-Normal distribution and a Linear function (or simply, a line).
+Normal distribution and the equation of a line.
 Both of these functions have two parameters that can be
 modified to attempt to 'fit' the output of the
-functions onto some existing data. These parameters are _mu_
+functions onto an existing answer. These parameters are _mu_
 (mean) and _sig_ (standard deviation) for the Normal distribution
 and _m_ (gradient) and _c_ (y-intercept) for a line.
 
@@ -24,7 +23,7 @@ at -5 and ending at 5.
 We will create existing answers (or 'truths') using the functions,
 the input data and values of _mu_ and _sig_ or _m_ and _c_. It is these
 values of the parameters that we expect our gradient descent algorithm
-to converge towards from some initial values of _mu_ and _sig_ or
+to converge towards from some initial 'guess' values of _mu_ and _sig_ or
 _m_ and _c_ that we will specify.
 
 The number of iterations and the learning rate are two further parameters
@@ -48,7 +47,7 @@ y = Normal(mu, sig).f(x)
 ```
 
 We make a first guess of _mu_ and _sig_ and run the gradient descent for
-10 iterations and a learning rate of 50, printing the results and plotting a contour graph of constant cost (or error) is plotted with respect to the values of _mu_ and _sig_.
+10 iterations and a learning rate of 50, printing the results and plotting a contour graph of constant cost (or error) with respect to the values of _mu_ and _sig_.
 
 ```python
 mu_guess, sig_guess = 0.1, 3.8
@@ -86,19 +85,11 @@ Plots:
 
 ![cost_contours_mu_sig_i10_r50]
 
-It can be seen that after each iteration the cost is reducing and the values of _mu_ and _sig_ are moving towards
-the true values of 1.0 and 3.0, respectively.
-
-What the algorithm is doing is working out the _Jacobian_ of cost. This is a vector
-of the partial derivatives of the cost function with respect to the parameters
-_mu_ and _sig_ - a vector that points in the direction of maximum gradient (or change
-in cost). To minimise the cost, we want to the modify the values of _mu_ and _sig_
-in a way that moves us in the direction on the _Jacobian_ and by an amount specified
-by the learning rate.
-
-
-The tail of the arrows indicates the current value of _mu_ and _sig_ and the
+It can be seen from the results that the values of _mu_ and _sig_ are moving towards the true values of 1.0 and 3.0, respectively, after each iteration with the cost decreasing correspondingly. In the contour plot, this iteration is visualised by arrows progressing towards the minimum of the cost surface. The tail of the arrows indicates the current value of _mu_ and _sig_ and the
 direction of the arrow indicates how the next values will be modified.
+
+What the algorithm is doing is working out the _Jacobian_ of cost. This is a vector of the partial derivatives of the cost function with respect to the parameters _mu_ and _sig_ - a vector that points in the direction of maximum gradient (or change in cost). To minimise the cost, we want to the modify the values of _mu_ and _sig_ in a way that moves us in the direction on the _Jacobian_ and by an amount specified by the learning rate.
+
 
 #### Reduced Learning Rate
 
