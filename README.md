@@ -93,7 +93,7 @@ What the algorithm is doing is working out the _Jacobian_ of cost. This is a vec
 
 #### Reduced Learning Rate
 
-We now investigate the effect of reducing the learning rate of the gradient descent. The learning rate is the size of the 'step' we are making as we descend the cost slope.
+We now investigate the effect of reducing the learning rate of the gradient descent. The learning rate is the size of the 'step' we are making as we descend the cost slope. Let's reset the model and reduce the learning rate by a factor of 10.
 
 ```python
 # Reset the model
@@ -126,7 +126,11 @@ And:
 
 ![cost_contours_mu_sig_i10_r5]
 
+The effect of reducing the learning rate is that we have only progressed down the cost slope a short distance and therefore finished at values of _mu_ and _sig_ of 0.33 and 3.53, respectively, short of the true values of 1.0 and 3.0.
+
 #### Increased Learning Rate
+
+Let's now increase the learning rate to 120, above the initial value of 50.
 
 ```python
 # Reset the model
@@ -159,7 +163,11 @@ And:
 
 ![cost_contours_mu_sig_i10_r120]
 
+We now see some interesting results. What we have done is increased the size of the steps down the cost surface by so much that we have actually stepped over the minimum point a number of times. Each time we do so, we re-evaluate the direction of steepest slope (turning around) and step again, stepping over the minimum point again and again. Therefore, after 10 steps (interations) we have not converged to the true values of _mu_ and _sig_ that we had done in 10 steps the first time.
+
 #### Increased Number of Iterations
+
+Now let's make the size of our steps small (the learning rate equal to the smaller value of 5) but increase the number of steps we take (the number of iterations increased to 100 from 10).
 
 ```python
 # Reset the model
@@ -189,6 +197,10 @@ Step | Cost        | Variables
 And:
 
 ![cost_contours_mu_sig_i100_r5]
+
+We can see that this combination of number of steps and the size of the steps has led to a much better result than the prior two combinations. Each step is small but we are doing many more of them and we progress down the cost slope smoothly.
+
+However, this combination is still inferior to the first combination of 10 iterations and a learning rate of 50. The final values of _mu_ and _sig_ are 0.98 and 2.99 instead of 0.99 and 3.00, respectively. Furthermore, this combination is computationally more expensive because of the greater number of iterations. Simply increasing the number of steps and decreasing the step size has not led ot the optimal solution.
 
 ### Linear Function
 
