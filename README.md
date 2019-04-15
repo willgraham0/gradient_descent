@@ -163,11 +163,11 @@ And:
 
 ![cost_contours_mu_sig_i10_r120]
 
-We now see some interesting results. What we have done is increased the size of the steps down the cost surface by so much that we have actually stepped over the minimum point a number of times. Each time we do so, we re-evaluate the direction of steepest slope (turning around) and step again, stepping over the minimum point again and again. Therefore, after 10 steps (interations) we have not converged to the true values of _mu_ and _sig_ that we had done in 10 steps the first time.
+We now see some interesting results. What we have done is increased the size of the steps down the cost surface by so much that we have actually stepped over the minimum point a number of times. Each time we do so, we re-evaluate the direction of steepest slope (turning around) and step again, stepping over the minimum point again and again. Therefore, after 10 steps (iterations) we have not converged on the true values of _mu_ and _sig_ that we had done in 10 steps the first time.
 
 #### Increased Number of Iterations
 
-Now let's make the size of our steps small (the learning rate equal to the smaller value of 5) but increase the number of steps we take (the number of iterations increased to 100 from 10).
+Now let's make the size of our steps small (the learning rate will be equal to the smaller value of 5) but increase the number of steps we take (the number of iterations will increase from 10 to 100).
 
 ```python
 # Reset the model
