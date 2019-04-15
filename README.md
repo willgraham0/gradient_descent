@@ -80,6 +80,7 @@ descent.plot_cost_contours()
 ```
 
 Plots:
+
 ![cost_contours_mu_sig_i10_r50]
 
 It can be seen that after each iteration the cost is reducing and the values of _mu_ and _sig_ are moving towards
