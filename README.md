@@ -290,7 +290,7 @@ Gradient descent is the process of calculating the Jacobian vector - the vector 
 
 The process of gradient descent is sensitive to two parameters; the number of iterations and the learning rate. The number of iterations is similar to the number of steps taken down the cost slope and the learning rate is the size of each step. The combination of these two parameters will affect the performance of the process. Too large a learning rate or too small the number of iterations and you may miss or overshoot the minimum of the slope. Too small a learning rate or too large the number of iterations and you may add exessive computational cost.
 
-## Appendix
+## And finally...
 
 The gradient descent algorithm developed here is not limited to functions of only two parameters. Any number is possible. The one limitation is that the 2-dimensional cost contour plot cannot be used to visualise the descent.
 
