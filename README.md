@@ -52,8 +52,8 @@ We make a first guess of _mu_ and _sig_ and run the gradient descent for
 ```python
 mu_guess, sig_guess = 0.1, 3.8
 model = Normal(mu_guess, sig_guess)
-descent = GradientDescent(model, x, y, iterations=10, learning_rate=50)
 
+descent = GradientDescent(model, x, y, iterations=10, learning_rate=50)
 descent.run()
 descent.print_results()
 ```
@@ -217,8 +217,8 @@ y = Linear(m, c).f(x)
 
 m_guess, c_guess = 0.1, 3.8
 model = Linear(m_guess, c_guess)
-descent = GradientDescent(model, x, y, iterations=1000, learning_rate=0.0001)
 
+descent = GradientDescent(model, x, y, iterations=1000, learning_rate=0.0001)
 descent.run()
 descent.print_results()
 descent.plot_cost_contours()
@@ -256,8 +256,8 @@ Increasing the learning rate and reducing the number of iterations introduces so
 ```python
 # Reset the model
 model = Linear(m_guess, c_guess)
-descent = GradientDescent(model, x, y, iterations=50, learning_rate=0.01)
 
+descent = GradientDescent(model, x, y, iterations=50, learning_rate=0.01)
 descent.run()
 descent.print_results()
 descent.plot_cost_contours()
@@ -305,8 +305,8 @@ y = Quadratic(a, b, c).f(x)
 
 a_guess, b_guess, c_guess = 2.0, 5.0, 3.3
 model = Quadratic(a_guess, b_guess, c_guess)
-descent = GradientDescent(model, x, y, iterations=500, learning_rate=0.0005)
 
+descent = GradientDescent(model, x, y, iterations=500, learning_rate=0.0005)
 descent.run()
 descent.print_results()
 ```
