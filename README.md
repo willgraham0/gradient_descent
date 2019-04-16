@@ -290,6 +290,41 @@ Gradient descent is the process of calculating the Jacobian vector - the vector 
 
 The process of gradient descent is sensitive to two parameters; the number of iterations and the learning rate. The number of iterations is similar to the number of steps taken down the cost slope and the learning rate is the size of each step. The combination of these two parameters will affect the performance of the process. Too large a learning rate or too small the number of iterations and you may miss or overshoot the minimum of the slope. Too small a learning rate or too large the number of iterations and you may add exessive computational cost.
 
+## Appendix
+
+The gradient descent algorithm developed here is not limited to functions of only two parameters. Any number is possible. The one limitation is that the 2-dimensional cost contour plot cannot be used to visualise the descent.
+
+As a final example:
+
+```python
+from functions import Quadratic
+
+a, b, c = 5.0, 3.0, 4.0
+x = np.linespace(-5.0, 5.0, 10)
+y = Quadratic(a, b, c).f(x)
+
+a_guess, b_guess, c_guess = 2.0, 5.0, 3.3
+model = Quadratic(a_guess, b_guess, c_guess)
+descent = GradientDescent(model, x, y, iterations=500, learning_rate=0.0005)
+
+descent.run()
+descent.print_results()
+```
+
+Gives:
+
+```
+Step | Cost        | Variables
+0    | 1.74193E+04 | a=2.00 b=5.00 c=3.30
+1    | 1.25560E+04 | a=7.60 b=4.80 c=3.61
+2    | 9.05359E+03 | a=2.85 b=4.61 c=3.35
+...
+498  | 1.60075E-02 | a=5.00 b=3.00 c=3.94
+499  | 1.58684E-02 | a=5.00 b=3.00 c=3.94
+500  | 1.57305E-02 | a=5.00 b=3.00 c=3.94
+```
+
+The chosen number of iterations and learning rate was a good first guess!
 
 [cost_contours_mu_sig_i10_r5]: images/cost_contours_mu_sig_i10_r5.png "cost_contours_mu_sig_i10_r5"
 [cost_contours_mu_sig_i10_r50]: images/cost_contours_mu_sig_i10_r50.png "cost_contours_mu_sig_i10_r50"
