@@ -103,7 +103,7 @@ class Normal(AbstractFunction):
 
 
 class Linear(AbstractFunction):
-    """A Linear distribution"""
+    """A Linear function."""
 
     def __init__(self, m, c):
         """Set the values of gradient (m) and intercept (c) for the line."""
@@ -144,3 +144,52 @@ class Linear(AbstractFunction):
 
     def __repr__(self):
         return f"<A Linear function with gradient={self.m} and intercept={self.c}>"
+
+
+class Quadratic(AbstractFunction):
+    """A quadratic function."""
+
+    def __init__(self, a, b, c):
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def f(self, x: np.array) -> np.array:
+        """Return f(x; a, b, c)."""
+        return self.a * x**2 + self.b * x + self.c
+
+    @staticmethod
+    def dfda(x: np.array) -> np.array:
+        """Return d/da of f(x; a, b, c)."""
+        return x**2
+
+    @staticmethod
+    def dfdb(x: np.array) -> np.array:
+        """Return d/db of f(x; a, b, c)."""
+        return x
+
+    @staticmethod
+    def dfdc(x: np.array) -> np.array:
+        """Return d/dc of f(x; a, b, c)."""
+        return np.ones(len(x))
+
+    def get_partial_derivatives(self) -> List[Callable]:
+        """Return the methods for each partial derivative."""
+        return [self.dfda, self.dfdb, self.dfdc]
+
+    @property
+    def variables(self) -> OrderedDict:
+        """Return the variable names and values."""
+        return OrderedDict({'a': self.a, 'b': self.b, 'c': self.c})
+
+    @property
+    def get_variables(self) -> np.array:
+        """Return the current values of the variables of the function."""
+        return np.array([self.a, self.b, self.c])
+
+    def set_variables(self, new_variables: np.array):
+        """Set the values of the variables of the function."""
+        self.a, self.b, self.c = new_variables
+
+    def __repr__(self):
+        return f"<A quadratic function with coefficients: a={self.a}, b={self.b} and c={self.c}>"
